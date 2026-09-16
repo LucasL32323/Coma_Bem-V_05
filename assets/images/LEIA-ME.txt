@@ -1,0 +1,52 @@
+PASTA DE IMAGENS DO APLICATIVO
+==============================
+
+Coloque aqui as fotos dos pratos. O aplicativo funciona normalmente mesmo
+com esta pasta vazia: onde faltar uma imagem, aparece um bloco cinza com
+um ícone no lugar.
+
+JA INCLUSO NESTA PASTA:
+
+  logo_coma_bem.png  -> logo da marca, usada na Splash e no Login.
+                        Fundo transparente, 420x420. Se o arquivo for
+                        removido, as telas caem no icone provisorio
+                        sozinhas (errorBuilder), sem quebrar o app.
+
+ARQUIVOS ESPERADOS (use exatamente estes nomes):
+
+  fettuccine_pesto.jpg
+  salada_caesar.jpg
+  file_mignon.jpg
+  petit_gateau.jpg
+  lasanha.jpg
+  file_parmegiana.jpg
+
+FORMATO RECOMENDADO
+  - JPG ou PNG
+  - Proporção quadrada ou 4:3
+  - Cerca de 800x600 pixels (arquivos muito grandes deixam o app lento)
+
+ONDE CONSEGUIR AS FOTOS
+  As imagens do protótipo do Figma podem ser exportadas direto de lá.
+  Alternativa: bancos de imagens gratuitos como Unsplash, Pexels ou
+  Freepik, que permitem uso sem custo.
+
+COMO ADICIONAR UM PRATO NOVO COM FOTO PRÓPRIA
+  1. Salve o arquivo nesta pasta.
+  2. No arquivo lib/database/database_helper.dart, informe o nome do
+     arquivo no campo 'res_nm_asset' do prato.
+  3. Desinstale o app do emulador e rode de novo, para o banco ser
+     recriado com os dados novos.
+
+  Pratos cadastrados pela tela "Novo prato" usam a foto tirada pela
+  câmera e não precisam de nada nesta pasta.
+
+IMPORTANTE
+  A pasta já está registrada no pubspec.yaml, na seção:
+
+    flutter:
+      assets:
+        - assets/images/
+
+  Depois de adicionar os arquivos, rode "flutter pub get" e reinicie
+  o aplicativo (um hot reload não basta para carregar assets novos).
