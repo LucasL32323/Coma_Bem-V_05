@@ -28,7 +28,10 @@ class DatabaseHelper {
 
     return openDatabase(
       caminho,
-      version: 3,
+      // Versão 4: entrada da restrição CHECK do ranking (1 a 5).
+      // O número precisa subir sempre que o CREATE TABLE muda, senão o
+      // aparelho que já tem o banco continua com a estrutura antiga.
+      version: 4,
       onCreate: _criarTabelas,
       // Se um banco antigo existir no aparelho, apagamos e recriamos com a
       // estrutura nova. Suficiente para um app de estudo.
@@ -65,7 +68,11 @@ class DatabaseHelper {
         res_ds_tipo_culinaria TEXT NOT NULL,
         res_ds_categoria      TEXT NOT NULL DEFAULT 'Massas',
         res_vl_preco          REAL NOT NULL DEFAULT 0,
-        res_nu_ranking        REAL NOT NULL DEFAULT 0,
+        -- CHECK: o próprio banco recusa nota fora da faixa 1 a 5, mesmo
+        -- que o INSERT venha de fora da tela de cadastro. O DEFAULT saiu
+        -- de 0 para 5 porque 0 violaria a restrição.
+        res_nu_ranking        REAL NOT NULL DEFAULT 5
+                              CHECK (res_nu_ranking BETWEEN 1 AND 5),
         res_nu_avaliacoes     INTEGER NOT NULL DEFAULT 0,
         res_ds_recomendacao   TEXT,
         res_nu_latitude       TEXT,
